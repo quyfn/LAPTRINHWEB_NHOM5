@@ -1,0 +1,36 @@
+{% extends "spa/booking_base.html" %}
+
+{% block title %}Đặt lịch | Chọn dịch vụ{% endblock %}
+
+{% block booking_content %}
+<div class="booking-steps">
+    {% for step in booking_steps %}
+        <a href="{{ step.url }}" class="step-item {% if step.number == active_step %}active{% elif step.number < active_step %}done{% endif %}">
+            <span>{{ step.number }}</span>
+            <small>{{ step.label }}</small>
+        </a>
+    {% endfor %}
+</div>
+<section class="booking-service-grid">
+    {% for item in services %}
+        <article class="service-card booking-card-item {% if item.slug == selected_slug %}selected{% endif %}">
+            <div class="service-visual {{ item.theme }}"></div>
+            <div class="service-body">
+                <div class="service-meta">
+                    <h3>{{ item.title }}</h3>
+                    <span>★ {{ item.rating }}</span>
+                </div>
+                <p>{{ item.subtitle }}</p>
+                <div class="service-time">⏱ {{ item.time }}</div>
+                <div class="service-actions">
+                    <strong>Từ {{ item.price }}</strong>
+                    <a href="/reviews/" class="mini-rating">★ 4.9</a>
+                </div>
+            </div>
+        </article>
+    {% endfor %}
+</section>
+<div class="booking-actions end-only">
+    <a href="/booking/package/" class="primary-action compact">Tiếp theo →</a>
+</div>
+{% endblock %}

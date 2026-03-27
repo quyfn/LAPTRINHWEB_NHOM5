@@ -1,0 +1,55 @@
+{% extends "spa/base.html" %}
+
+{% block title %}Chi tiết dịch vụ | Mai Trâm Spa{% endblock %}
+
+{% block content %}
+<main class="detail-page">
+    <section class="detail-layout">
+        <div class="detail-gallery">
+            <div class="detail-main-image {{ service.theme }}" style="background-image: url('{{ service.image }}');"></div>
+            <div class="thumb-row">
+                {% for item in gallery %}
+                    <div class="detail-thumb {{ item.theme }}" style="background-image: url('{{ item.image }}');"></div>
+                {% endfor %}
+            </div>
+            <div class="detail-buttons">
+                <a href="{{ booking_cta_url }}" class="primary-action">Đặt ngay</a>
+                <a href="/consult/" class="secondary-action">Tư vấn miễn phí</a>
+            </div>
+        </div>
+        <div class="detail-content">
+            <div class="detail-breadcrumb">Trang chủ &gt; Dịch vụ &gt; {{ service.title }}</div>
+            <h1>{{ service.title }}</h1>
+            <div class="detail-rating">★★★★★ <span>4.9 (247 đánh giá)</span></div>
+            <div class="detail-price">
+                <strong>1.500.000đ</strong>
+                <span>1.800.000đ</span>
+            </div>
+            <div class="detail-tags">
+                <span>Thời gian: 90 phút</span>
+                <span>Chuyên viên tay nghề cao</span>
+            </div>
+            <section>
+                <h3>Mô tả dịch vụ</h3>
+                <p>Liệu trình chăm sóc da mặt cao cấp tại Mai Trâm được thiết kế riêng cho từng loại da. Sử dụng công nghệ Hàn Quốc nâng tone nhẹ và cấp dưỡng chất thiên nhiên cao cấp, giúp da trở nên sáng mịn, trẻ hóa và đầy sinh lực tự nhiên.</p>
+            </section>
+            <section>
+                <h3>Quy trình thực hiện</h3>
+                <ol>
+                    {% for step in steps %}
+                        <li>{{ step }}</li>
+                    {% endfor %}
+                </ol>
+            </section>
+            <section>
+                <h3>Lợi ích của dịch vụ</h3>
+                <ul class="benefit-list">
+                    {% for benefit in benefits %}
+                        <li>{{ benefit }}</li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </div>
+    </section>
+</main>
+{% endblock %}
