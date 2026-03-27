@@ -1,0 +1,44 @@
+{% extends "spa/booking_base.html" %}
+
+{% block title %}Đặt lịch | Chọn thời gian{% endblock %}
+
+{% block booking_content %}
+<div class="booking-steps">
+    {% for step in booking_steps %}
+        <a href="{{ step.url }}" class="step-item {% if step.number == active_step %}active{% elif step.number < active_step %}done{% endif %}">
+            <span>{{ step.number }}</span>
+            <small>{{ step.label }}</small>
+        </a>
+    {% endfor %}
+</div>
+<section class="time-layout">
+    <div>
+        <h3>Chọn ngày</h3>
+        <div class="calendar-card">
+            <div class="calendar-head"><span>‹</span><strong>T2, 2026</strong><span>›</span></div>
+            <div class="calendar-week">
+                <span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span>
+            </div>
+            <div class="calendar-grid">
+                {% for day in calendar_days %}
+                    <a href="/booking/time/?full=1" class="{% if day == selected_day %}active{% endif %}">{{ day }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div>
+        {% if show_times %}
+            <h3>Chọn giờ</h3>
+            <div class="time-card">
+                {% for time in times %}
+                    <a href="/booking/confirm/" class="time-pill {% if time == selected_time %}active{% endif %} {% if time == '08:00' or time == '09:00' or time == '10:00' or time == '18:00' %}muted{% endif %}">{{ time }}</a>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</section>
+<div class="booking-actions">
+    <a href="/booking/package/" class="back-button">← Quay lại</a>
+    <a href="/booking/confirm/" class="primary-action compact">Tiếp theo →</a>
+</div>
+{% endblock %}

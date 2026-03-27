@@ -1,0 +1,35 @@
+{% extends "spa/base.html" %}
+
+{% block title %}Dịch vụ | Mai Trâm Spa{% endblock %}
+
+{% block content %}
+<main class="services-page">
+    <section class="toolbar">
+        <div class="search-box">🔍 Tìm tên dịch vụ mong muốn...</div>
+        <div class="chip-row">
+            {% for category in categories %}
+                <span class="chip {% if forloop.first %}active{% endif %}">{{ category }}</span>
+            {% endfor %}
+        </div>
+    </section>
+    <section class="service-grid">
+        {% for item in services %}
+            <article class="service-card">
+                <div class="service-visual {{ item.theme }}"></div>
+                <div class="service-body">
+                    <div class="service-meta">
+                        <h3>{{ item.title }}</h3>
+                        <span>★ {{ item.rating }}</span>
+                    </div>
+                    <p>{{ item.subtitle }}</p>
+                    <div class="service-time">⏱ {{ item.time }}</div>
+                    <div class="service-actions">
+                        <strong>Từ {{ item.price }}</strong>
+                        <a href="/services/collagen/">Xem chi tiết →</a>
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+    </section>
+</main>
+{% endblock %}

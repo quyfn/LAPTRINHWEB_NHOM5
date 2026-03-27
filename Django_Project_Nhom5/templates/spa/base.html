@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mai Trâm Spa{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'spa/site.css' %}">
+</head>
+<body>
+    <div class="page-shell">
+        <div class="top-shell">
+            <header class="site-header">
+                <a href="/" class="brand">
+                    <span class="brand-title">MAI TRÂM</span>
+                    <span class="brand-subtitle">Beauty & Spa</span>
+                </a>
+                <nav class="site-nav">
+                    {% for item in nav_items %}
+                        <a href="{{ item.url }}" class="{% if current_section == item.key %}active{% endif %}">{{ item.label }}</a>
+                    {% endfor %}
+                </nav>
+                <a href="{{ booking_cta_url }}" class="cta-button">Đặt lịch hẹn</a>
+            </header>
+        </div>
+        {% block content %}{% endblock %}
+        <div class="bottom-shell">
+            <footer class="site-footer">
+                <div>
+                    <h3>Mai Trâm Spa</h3>
+                    <p>Nơi vẻ đẹp thăng hoa - Chăm sóc sắc đẹp toàn diện với công nghệ hiện đại và đội ngũ chuyên gia hàng đầu.</p>
+                    <div class="social-row">
+                        <a href="/consult/">f</a>
+                        <a href="/consult/">◎</a>
+                        <a href="/consult/">𝕏</a>
+                    </div>
+                </div>
+                <div>
+                    <h3>Dịch vụ</h3>
+                    <ul>
+                        {% for item in footer_services %}
+                            <li><a href="/services/">{{ item }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div>
+                    <h3>Về chúng tôi</h3>
+                    <ul>
+                        {% for item in footer_about %}
+                            <li><a href="/consult/">{{ item }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div>
+                    <h3>Liên hệ</h3>
+                    <ul class="contact-list">
+                        <li>{{ contact.address }}</li>
+                        <li><a href="/consult/">{{ contact.phone }}</a></li>
+                        <li><a href="/consult/">{{ contact.email }}</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

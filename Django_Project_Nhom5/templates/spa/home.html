@@ -1,0 +1,22 @@
+{% extends "spa/base.html" %}
+
+{% block title %}Mai Trâm Spa{% endblock %}
+
+{% block content %}
+<main class="home-page">
+    <section class="hero-panel">
+        <div class="hero-copy">
+            <h1>MAI TRÂM BEAUTY & SPA</h1>
+            <p>Chạm làn da. Thư giãn tâm trí. Chăm sóc cơ thể với ngôn ngữ thiết kế mềm, sáng và nữ tính như đúng ảnh mẫu.</p>
+        </div>
+        <div class="hero-collage">
+            {% for card in hero_cards %}
+                <article class="collage-card {{ card.shape }} {{ card.theme }}">
+                    <span>{{ card.title }}</span>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+    <a href="/consult/" class="floating-consult">Tư vấn miễn phí ☎</a>
+</main>
+{% endblock %}

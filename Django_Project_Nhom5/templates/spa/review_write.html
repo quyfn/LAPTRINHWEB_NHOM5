@@ -1,0 +1,34 @@
+{% extends "spa/base.html" %}
+
+{% block title %}Thực hiện đánh giá{% endblock %}
+
+{% block content %}
+<main class="reviews-page dimmed">
+    <section class="review-editor">
+        <div class="review-editor-head">
+            <h2>Thực hiện đánh giá</h2>
+            <a href="/reviews/" class="modal-close">✕</a>
+        </div>
+        <div class="review-editor-body">
+            <div class="modal-image theme-blush"></div>
+            <div class="modal-copy">
+                <p><strong>Tên dịch vụ:</strong> Dưỡng da chuyên sâu</p>
+                <p>Ngày sử dụng: 01/01/2026</p>
+                <p>Nhân viên thực hiện: Trần Thị Mai</p>
+            </div>
+        </div>
+        <div class="editor-stars">★ ★ ★ ★ ★</div>
+        <div class="editor-divider"></div>
+        <h3>Đánh giá dịch vụ</h3>
+        <p>Viết đánh giá từ 50 kí tự</p>
+        <div class="editor-box">Nêu trải nghiệm của bạn</div>
+        <a href="/reviews/write/?success=1" class="editor-submit">Gửi đánh giá</a>
+        {% if success %}
+            <div class="mini-confirm success-box">
+                <div class="success-check">✓</div>
+                <strong>Bạn đã đánh giá thành công!</strong>
+            </div>
+        {% endif %}
+    </section>
+</main>
+{% endblock %}
