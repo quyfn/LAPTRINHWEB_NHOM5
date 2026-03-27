@@ -1,0 +1,38 @@
+{% extends "spa/base.html" %}
+
+{% block title %}Chi tiết dịch vụ | Đánh giá{% endblock %}
+
+{% block content %}
+<main class="reviews-page dimmed">
+    <section class="reviews-panel">
+        <div class="review-grid muted-preview">
+            {% for item in review_items %}
+                <article class="review-card">
+                    <div class="review-thumb {{ item.theme }}" style="background-image: url('{{ item.image }}');"></div>
+                    <div class="review-status {{ item.status_class }}">{{ item.status }}</div>
+                </article>
+            {% endfor %}
+        </div>
+        <div class="review-modal">
+            <a href="/reviews/" class="modal-close">✕</a>
+            <h2>Chi tiết dịch vụ</h2>
+            <div class="modal-body">
+                <div class="modal-image {{ selected_review.theme }}" style="background-image: url('{{ selected_review.image }}');"></div>
+                <div class="modal-copy">
+                    <p><strong>Tên dịch vụ:</strong> {{ selected_review.title }}</p>
+                    <p>Ngày sử dụng: {{ selected_review.date }}</p>
+                    <p>Nhân viên thực hiện: {{ selected_review.staff }}</p>
+                    <div class="modal-actions">
+                        {% if modal_variant == 'done' %}
+                            <span class="review-status status-green">Đã đánh giá</span>
+                            <a href="/reviews/detail/" class="secondary-action compact-outline">Xem chi tiết</a>
+                        {% else %}
+                            <a href="/reviews/write/" class="primary-action compact">✎ Đánh giá ngay</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "spa/booking_base.html" %}
+
+{% block title %}Lịch hẹn của tôi{% endblock %}
+
+{% block booking_content %}
+<section class="appointments-block">
+    <h2>Lịch hẹn của tôi</h2>
+    {% for item in appointments %}
+        <article class="appointment-card">
+            <div class="appointment-top">
+                <span class="appointment-type {% if item.type == 'Tư vấn' %}status-blue{% else %}status-pink{% endif %}">{{ item.type }}</span>
+                <span class="appointment-status {{ item.status_class }}">{{ item.status }}</span>
+            </div>
+            <h3>{{ item.title }}</h3>
+            <div class="appointment-meta">
+                <span>{{ item.date }}</span>
+                <span>{{ item.time }}</span>
+                <span>{{ item.package }}</span>
+                {% if item.action %}
+                    <span class="appointment-action {{ item.action_class }}">{{ item.action }}</span>
+                {% endif %}
+            </div>
+        </article>
+    {% endfor %}
+</section>
+{% endblock %}

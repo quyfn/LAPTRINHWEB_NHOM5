@@ -1,0 +1,38 @@
+{% extends "spa/base.html" %}
+
+{% block title %}Chi tiết đánh giá{% endblock %}
+
+{% block content %}
+<main class="review-detail-page">
+    <section class="review-detail-card">
+        <div class="review-detail-header">
+            <a href="/reviews/" class="back-link">←</a>
+            <h2>Chi tiết đánh giá</h2>
+        </div>
+        <div class="review-detail-hero">
+            <div class="modal-image {{ review_item.theme }}" style="background-image: url('{{ review_item.image }}');"></div>
+        </div>
+        <div class="review-author">👤 VoBichHop</div>
+        <div class="editor-stars detail-stars">★ ★ ★ ★ ★</div>
+        <div class="detail-meta">
+            <p>Tên dịch vụ: {{ review_item.title }}</p>
+            <p>Nhân viên thực hiện: {{ review_item.staff }}</p>
+        </div>
+        <div class="editor-divider"></div>
+        <textarea class="detail-text detail-text-input" rows="6">Nhân viên thân thiện, tận tâm, thiết bị hiện đại, chăm sóc khách hàng chu đáo, sẽ quay lại vào lần sau</textarea>
+        <div class="detail-actions">
+            <button type="button" class="secondary-action compact-outline" onclick="window.location.href='/reviews/'">Hủy</button>
+            <button type="button" class="primary-action compact" onclick="window.location.href='/reviews/detail/?confirm=1'">Xoá đánh giá</button>
+        </div>
+        {% if confirm_delete %}
+            <div class="mini-confirm">
+                <strong>Bạn có chắc chắn muốn xoá đánh giá?</strong>
+                <div class="mini-confirm-actions">
+                    <button type="button" class="secondary-action compact-outline" onclick="window.location.href='/reviews/detail/'">Hủy</button>
+                    <button type="button" class="primary-action compact" onclick="window.location.href='/reviews/deleted/'">Xác nhận</button>
+                </div>
+            </div>
+        {% endif %}
+    </section>
+</main>
+{% endblock %}

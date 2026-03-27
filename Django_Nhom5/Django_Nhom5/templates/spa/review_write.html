@@ -1,0 +1,50 @@
+{% extends "spa/base.html" %}
+
+{% block title %}Thực hiện đánh giá{% endblock %}
+
+{% block content %}
+<main class="reviews-page dimmed">
+    <section class="review-editor">
+        <div class="review-editor-head">
+            <h2>Thực hiện đánh giá</h2>
+            <a href="/reviews/" class="modal-close">✕</a>
+        </div>
+        <div class="review-editor-body">
+            <div class="modal-image theme-blush" style="background-image: url('{{ review_item.image }}');"></div>
+            <div class="modal-copy">
+                <p><strong>Tên dịch vụ:</strong> {{ review_item.title }}</p>
+                <p>Ngày sử dụng: {{ review_item.date }}</p>
+                <p>Nhân viên thực hiện: {{ review_item.staff }}</p>
+            </div>
+        </div>
+        <form method="post" class="review-form">
+            {% csrf_token %}
+            <fieldset class="rating-fieldset">
+                <legend>Chấm sao</legend>
+                <div class="editor-stars interactive-stars">
+                    {% for value in '12345' %}
+                        <label class="star-option">
+                            <input type="radio" name="rating" value="{{ value }}" {% if review_form.rating == value %}checked{% endif %}>
+                            <span>★</span>
+                        </label>
+                    {% endfor %}
+                </div>
+            </fieldset>
+            <div class="editor-divider"></div>
+            <div class="review-form-fields">
+                <label class="review-label" for="review-title">Tiêu đề đánh giá</label>
+                <input id="review-title" name="title" class="review-input" type="text" value="{{ review_form.title }}" placeholder="Nhập tiêu đề ngắn">
+                <label class="review-label" for="review-content">Nội dung đánh giá</label>
+                <textarea id="review-content" name="content" class="editor-box" rows="6" placeholder="Nêu trải nghiệm của bạn">{{ review_form.content }}</textarea>
+            </div>
+            <button type="submit" class="editor-submit">Gửi đánh giá</button>
+        </form>
+        {% if success %}
+            <div class="mini-confirm success-box">
+                <div class="success-check">✓</div>
+                <strong>Bạn đã đánh giá thành công!</strong>
+            </div>
+        {% endif %}
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "spa/account_base.html" %}
+
+{% block title %}Thông tin cá nhân{% endblock %}
+
+{% block account_content %}
+<section class="account-greeting">
+    <h2>Xin chào, Lê Thị Quỳnh Như!</h2>
+    <p>Chúc bạn có một ngày tuyệt vời ✨</p>
+</section>
+<section class="account-card">
+    <div class="profile-head">
+        <div class="profile-avatar theme-lilac" style="background-image: url('{{ profile_avatar }}');"></div>
+        <div>
+            <h3>Lê Thị Quỳnh Như</h3>
+            <p>Khách hàng thân thiết • Tham gia từ tháng 3/2024</p>
+        </div>
+    </div>
+    <div class="editor-divider soft-divider"></div>
+    <form method="post" class="profile-form">
+        {% csrf_token %}
+        <div class="field-grid">
+            <label>
+                <span>Họ và tên</span>
+                <input type="text" name="name" value="{{ form_data.name }}">
+            </label>
+            <label>
+                <span>Số điện thoại</span>
+                <input type="text" name="phone" value="{{ form_data.phone }}">
+            </label>
+            <label>
+                <span>Email</span>
+                <input type="email" name="email" value="{{ form_data.email }}">
+            </label>
+            <label>
+                <span>Ngày sinh</span>
+                <input type="text" name="birthday" value="{{ form_data.birthday }}">
+            </label>
+        </div>
+        <label class="full-field">
+            <span>Địa chỉ</span>
+            <input type="text" name="address" value="{{ form_data.address }}">
+        </label>
+        <label class="full-field">
+            <span>Ghi chú (Da nhạy cảm, tiền sử dị ứng,...)</span>
+            <textarea name="note" rows="3">{{ form_data.note }}</textarea>
+        </label>
+        <button type="submit" class="profile-submit">Cập nhật thông tin</button>
+    </form>
+    {% if show_success %}
+        <div class="mini-confirm">
+            <div class="success-check">✓</div>
+            <strong>Cập nhật thông tin thành công</strong>
+            <div class="mini-confirm-actions">
+                <a href="/account/profile/" class="primary-action compact">Đóng</a>
+            </div>
+        </div>
+    {% endif %}
+    {% if show_error %}
+        <div class="mini-confirm">
+            <div class="error-mark">✕</div>
+            <strong>Số điện thoại phải đúng 10 chữ số</strong>
+            <div class="mini-confirm-actions">
+                <a href="/account/profile/" class="primary-action compact">Đóng</a>
+            </div>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "spa/base.html" %}
+
+{% block content %}
+<main class="booking-shell">
+    <div class="booking-layout">
+        <aside class="booking-sidebar">
+            <div class="sidebar-brand">
+                <span class="brand-title">MAI TRÂM</span>
+                <span class="brand-subtitle">Beauty & Spa</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="/booking/service/" class="{% if sidebar_active == 'booking' %}active{% endif %}">Đặt lịch dịch vụ</a>
+                <a href="/appointments/" class="{% if sidebar_active == 'appointments' %}active{% endif %}">Lịch đặt của tôi</a>
+            </nav>
+        </aside>
+        <section class="booking-main">
+            <div class="booking-card">
+                {% block booking_content %}{% endblock %}
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}
